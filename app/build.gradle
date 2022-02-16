@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 25
 
     defaultConfig {
         applicationId "com.example.deggendorfapp"
         minSdk 21
-        targetSdk 31
+        targetSdk 25
         versionCode 1
         versionName "1.0"
 
@@ -29,10 +29,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
 
-    // COMPLETED (1) Add RecyclerView dependency
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    // RecyclerView dependency
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     // Instrumentation dependencies use androidTestImplementation
     // (as opposed to testImplementation for local unit tests run in the JVM)
