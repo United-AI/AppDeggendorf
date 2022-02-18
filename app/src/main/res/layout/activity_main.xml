@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:foregroundGravity="top"
         android:gravity="top|center_horizontal"
-        android:text="Deggendorf App"/>
+        android:text="@string/deggendorf_app"/>
 
     <ProgressBar
         android:id="@+id/pb_loading_indicator"
