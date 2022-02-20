@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Copyright (C) 2016 The Android Open Source Project
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -18,8 +17,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_items"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
+
+    <!--Text View for an error message. The error message is not used. Can be used if needed
+    -->
     <TextView
         android:id="@+id/tv_error_message_display"
         android:layout_width="wrap_content"
@@ -29,13 +31,6 @@
         android:textSize="20sp"
         android:visibility="visible" />
 
-    <TextView
-        android:id="@+id/main_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:foregroundGravity="top"
-        android:gravity="top|center_horizontal"
-        android:text="@string/deggendorf_app"/>
 
     <ProgressBar
         android:id="@+id/pb_loading_indicator"

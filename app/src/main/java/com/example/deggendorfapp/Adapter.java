@@ -15,8 +15,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.NumberViewHolder> {
     private static final String TAG = Adapter.class.getSimpleName();
     private int mNumberItems; //number of items to display in list
 
+    private final ListItemClickListener listItemClickListener;
 
-    public Adapter(int mNumberItems) {
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    public Adapter(int mNumberItems, ListItemClickListener listItemClickListener) {
+        this.listItemClickListener = listItemClickListener;
         this.mNumberItems = mNumberItems;
     }
 
@@ -47,7 +53,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.NumberViewHolder> {
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
         Log.d(TAG, "#" + position);
-        holder.bind(position);
+        RecyclerViewContents recyclerViewContents = new RecyclerViewContents(position);
+        holder.bind(recyclerViewContents.returnRecyclerViewListItemAtIndex());
     }
 
     @Override
@@ -55,18 +62,25 @@ public class Adapter extends RecyclerView.Adapter<Adapter.NumberViewHolder> {
         return mNumberItems;
     }
 
-    class NumberViewHolder extends RecyclerView.ViewHolder {
+    class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView listItemNumberView;
 
         public NumberViewHolder(View itemView) {
             super(itemView);
-
-            listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
+            listItemNumberView = itemView.findViewById(R.id.tv_item_number);
+            itemView.setOnClickListener(this);
         }
 
-        void bind(int listIndex) {
-            listItemNumberView.setText(String.valueOf(listIndex));
+        void bind(String listIndex) {
+            listItemNumberView.setText(listIndex);
         }
+
+        @Override //had to override because onClick is implemented
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            listItemClickListener.onListItemClick(clickedPosition);
+        }
+
     }
 
 }
