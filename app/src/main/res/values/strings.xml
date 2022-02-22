@@ -4,4 +4,8 @@
     <string name="nutzloser_string">irgendwas</string>
     <string name="deggendorf_app">Deggendorf App</string>
     <string name="hello_world">Hello world</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="distance_from_bars">Distance from bars</string>
+    <string name="Willkommen_Nachricht">Herzlich willkommen in der deggendorfer online-Community</string>
+    <string name="Bildrecht">PANORAMABLICK AUF DEN LUITPOLDPLATZ IN DEGGENDORF\n © Stadt Deggendorf · Alle Rechte vorbehalten</string>
 </resources>

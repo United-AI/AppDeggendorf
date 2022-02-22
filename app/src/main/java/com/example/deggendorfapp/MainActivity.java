@@ -1,15 +1,14 @@
 package com.example.deggendorfapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Adapter.ListItemClickListener {
 
@@ -19,23 +18,26 @@ public class MainActivity extends AppCompatActivity implements Adapter.ListItemC
     private static final int NUMBER_OF_ITEMS_IN_RECYCLING_VIEW = 10;
 
     private RecyclerView mRecyclerView;
-    private TextView distanceFromBars;
 
-    //TextView mErrorMessageDisplay;
     ProgressBar mLoadingIndicator;
 
     private Adapter mAdapter;
     private Toast toast;
 
+    private RecyclerViewContents recyclerViewContents;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_DeggendorfApp);
         setContentView(R.layout.activity_main);
+
+
+        recyclerViewContents = new RecyclerViewContents(this);
 
         mRecyclerView = findViewById(R.id.recyclerview_items);
 
-        /* This TextView is used to display errors and will be hidden if there are no errors */
-        // mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
         //LinearLayoutManager can support HORIZONTAL or VERTICAL orientations.
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -60,12 +62,8 @@ public class MainActivity extends AppCompatActivity implements Adapter.ListItemC
         String toastMessage = "Option " + clickedParameter + " was clicked";
         toast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
         toast.show();
+        recyclerViewContents.actionWhenClicked(clickedParameter);
 
-        //launching of layout distance_from_bars
-        if (clickedParameter == 0) {
-            distanceFromBars = findViewById(R.id.distance_from_bars);
-            setContentView(R.layout.distance_from_bars);
-        }
     }
 }
 /*
