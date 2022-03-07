@@ -10,18 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.deggendorfapp.R;
+
+import java.util.ArrayList;
+
 public class Adapter extends RecyclerView.Adapter<Adapter.NumberViewHolder> {
 
     private static final String TAG = Adapter.class.getSimpleName();
     private int mNumberItems; //number of items to display in list
 
     private final ListItemClickListener listItemClickListener;
+    private ArrayList<String> files;
 
     public interface ListItemClickListener {
         void onListItemClick(int clickedItemIndex);
     }
 
-    public Adapter(int mNumberItems, ListItemClickListener listItemClickListener) {
+    public Adapter(int mNumberItems, ListItemClickListener listItemClickListener, ArrayList<String> files) {
+        this.files = files;
         this.listItemClickListener = listItemClickListener;
         this.mNumberItems = mNumberItems;
     }
@@ -53,7 +59,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.NumberViewHolder> {
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
         Log.d(TAG, "#" + position);
-        RecyclerViewContents recyclerViewContents = new RecyclerViewContents(position);
+        RecyclerViewContents recyclerViewContents = new RecyclerViewContents(position, files);
         holder.bind(recyclerViewContents.returnRecyclerViewListItemAtIndex());
     }
 
@@ -77,7 +83,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.NumberViewHolder> {
 
         @Override //had to override because onClick is implemented
         public void onClick(View view) {
-            int clickedPosition = getAdapterPosition();
+            int clickedPosition = getAbsoluteAdapterPosition();
             listItemClickListener.onListItemClick(clickedPosition);
         }
 

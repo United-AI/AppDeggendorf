@@ -1,43 +1,26 @@
 package com.example.deggendorfapp;
 
-import android.os.Bundle;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
 
-public class RecyclerViewContents extends AppCompatActivity {
-    private String[] recyclerViewList;
+public class RecyclerViewContents {
+    private ArrayList<String> recyclerViewList;
     private int position;
-    private AppCompatActivity appCompatActivity;
 
-
-    RecyclerViewContents(int position) {
-        recyclerViewList = new String[]{"Option 0", "Option 1", "Option 2", "Option 3", "Option 4", "Option 5",
-                "Option 6", "Option 7", "Option 8", "Option 9"};
+    RecyclerViewContents(int position, ArrayList<String> files) {
+        recyclerViewList = files;
         this.position = position;
     }
 
-    public RecyclerViewContents(AppCompatActivity appCompatActivity) {
-        this.appCompatActivity = appCompatActivity;
-    }
+
 
     public String returnRecyclerViewListItemAtIndex() {
-        return recyclerViewList[position];
-    }
-
-    void actionWhenClicked(int clickedParameter) {
-        switch (clickedParameter) {
-            case 0:
-                appCompatActivity.setContentView(R.layout.distance_from_bars);
-                break;
-            case 1:
-                appCompatActivity.setContentView(R.layout.activity_maps);
-                break;
+        if(recyclerViewList.size() == 0){
+            return "No bars";
+        }
+        else{
+            return recyclerViewList.get(position);
         }
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
 }

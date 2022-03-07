@@ -1,24 +1,19 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.deggendorfapp"
+        applicationId "com.example.pipelinesearch"
         minSdk 21
-        targetSdk 25
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        manifestPlaceholders = [GOOGLE_MAP_API_KEY: "${properties.getProperty('GOOGLE_MAP_API_KEY')}"]
-        buildConfigField "String", "GOOGLE_PLACE_API_KEY", "\"${properties.getProperty('GOOGLE_PLACE_API_KEY')}\""
     }
 
     buildTypes {
@@ -31,33 +26,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:31.0.0'
 
-
-    // RecyclerView dependency
-    implementation 'com.android.support:recyclerview-v7:31.0.0'
-    implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    testImplementation 'org.testng:testng:6.9.6'
-
-    //google services
-    implementation 'com.google.android.material:material:1.6.0-alpha02'
-    implementation 'com.google.android.gms:play-services-maps:18.0.2'
-    implementation 'com.google.android.gms:play-services-location:19.0.1'
-
-    // Instrumentation dependencies use androidTestImplementation
-    // (as opposed to testImplementation for local unit tests run in the JVM)
-    androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support:support-annotations:28.0.0'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    implementation 'androidx.preference:preference:1.1.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'org.osmdroid:osmdroid-android:6.1.11'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'com.github.HBiSoft:PickiT:2.0.2'
+    def appcompat_version = "1.4.1"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
 }
-
